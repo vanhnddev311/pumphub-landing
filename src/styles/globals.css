@@ -1,0 +1,81 @@
+@import '~antd/dist/antd.css';
+@import '../../node_modules/tailwindcss/tailwind.css';
+
+body {
+    color: #ffffff !important;
+    background: #000000 !important;
+    font-family: 'Pixelify Sans', sans-serif !important;
+}
+
+@font-face {
+    font-family: 'Pixel Digivolve';
+    src: url('../common/assets/fonts/pixel_digivolve/Pixel Digivolve.otf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.text-title {
+    color: #FFF;
+    text-align: center;
+    font-size: 30px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.form-input {
+    filter: drop-shadow(0px 5px 0px #EC9E34);
+}
+
+.bg-input {
+    background: url('../common/assets/images/bg-input.png') center / cover;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 700;
+}
+
+.bg-input::placeholder {
+    color: #000000;
+}
+
+.form-submit {
+    filter: drop-shadow(0px 5px 0px #FFF);
+}
+
+.bg-submit {
+    background: url('../common/assets/images/bg-submit.png') center / cover;
+}
+
+.ant-modal-content {
+    border-radius: 15px;
+    border: 10px solid #FDB03B;
+    background: #000;
+}
+
+.modal-title {
+    text-align: center;
+    font-size: 64px;
+    font-family: "Pixel Digivolve", sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    background: linear-gradient(0deg, #EC9E34 0%, #FFF 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+@media (max-width: 800px) {
+    .text-title {
+        color: #FFF;
+        text-align: center;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: normal;
+    }
+
+    .modal-title {
+        font-size: 32px;
+    }
+}

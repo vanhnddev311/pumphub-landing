@@ -1,9 +1,6 @@
-import { discordUrl, telegramUrl, twitterUrl } from '@/common/utils';
-
 export const routes = [
   {
-    // path: 'https://launchpad.movegpt.io/launchpad/amnis-draconian-ino',
-    path: 'https://launchpad.movegpt.io/launchpad/amnis-draconian-ino',
+    path: '',
     target: true,
     name: 'Launchpad',
     hot: false,
@@ -12,7 +9,7 @@ export const routes = [
     hidden: false,
   },
   {
-    path: 'https://launchpad.movegpt.io/staking',
+    path: '',
     target: true,
     name: 'Staking',
     hot: false,
@@ -20,7 +17,7 @@ export const routes = [
     hidden: false,
   },
   {
-    path: 'https://movegpt.gitbook.io/movegpt',
+    path: '',
     target: true,
     name: 'Docs',
     hot: false,
@@ -64,7 +61,7 @@ const PageHeader: React.FunctionComponent = () => {
   const SideMenu = ({ currentPageName, onRouteSelected }: any) => {
     const onClick: MenuProps['onClick'] = (e) => {
       console.log('e', e);
-      window.open(`https://launchpad.movegpt.io/${e.key}`, '_blank');
+      window.open(`https://pumphub.io/${e.key}`, '_blank');
       onRouteSelected();
     };
 

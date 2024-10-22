@@ -4,7 +4,7 @@ export default function Document() {
   return (
     <Html lang="en">
       <Head>
-        <title>Pump Hub</title>
+        <title>Pumphub - One-stop hub for token creation on Aptos</title>
         <link rel="icon" href="/pumphub-logo.png" />
         <link rel="apple-touch-icon" sizes="192x192" href="/pumphub-logo.png" />
         <link

@@ -39,7 +39,7 @@ const Home: React.FunctionComponent = () => {
         alt={' '}
         className={'block sm:hidden absolute bottom-0 left-0 w-full z-20'}
       />
-      <div className={'relative border-[15px] border-[#EC9E34] h-screen z-10'}>
+      <div className={'relative border-[15px] border-[#EC9E34] min-h-screen pb-24 z-10'}>
         <div className={`header z-20 w-full flex items-center bg-[#000] p-[60px]`}>
           <div className="mx-auto container max-w-[1600px] sm:px-0 h-full w-full top-0 left-0 flex justify-between items-center relative">
             <div className={'left-0 top-0 flex justify-center sm:justify-start items-center relative w-full sm:max-w-[250px]'}>

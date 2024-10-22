@@ -2,7 +2,7 @@ import { DiscordIcon, TelegramIcon, TwitterIcon } from '@/common/components/icon
 import { discordUrl, telegramUrl, twitterUrl } from '@/common/utils';
 import Image from 'next/image';
 import Link from 'next/link';
-import React from 'react';
+import React, { useState } from 'react';
 import ModalSubmitSuccess from '@/common/components/Modal/ModalSubmitSuccess';
 import { useModal } from '@/common/hooks/useModal';
 import ModalSubmitFailed from '@/common/components/Modal/ModalSubmitFailed';
@@ -11,6 +11,7 @@ const Home: React.FunctionComponent = () => {
   const [username, setUsername] = React.useState('');
   const [email, setEmail] = React.useState('');
   const [validEmail, setValidEmail] = React.useState(true);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const {show, setShow, toggle} = useModal()
   const {show: showFailed, setShow: setShowFailed, toggle: toggleFailed} = useModal()
 
@@ -29,6 +30,7 @@ const Home: React.FunctionComponent = () => {
     const formData = new FormData();
     formData.append('userName', username);
     formData.append('email', email);
+    setIsSubmitting(true)
     fetch('https://sheetdb.io/api/v1/au1lo0u9fhi65', {
         method: 'POST',
         body: formData,
@@ -42,7 +44,7 @@ const Home: React.FunctionComponent = () => {
       .catch((e: any) => {
         console.error('Fetch error:', e);
         setShowFailed(true);
-      });
+      }).finally(() => setIsSubmitting(false));
   };
 
   return (
@@ -91,7 +93,7 @@ const Home: React.FunctionComponent = () => {
             </div>
           </div>
         </div>
-        <div className={'relative max-w-[312px] sm:max-w-[1644px] mx-auto'}>
+        <div className={'relative flex flex-col items-center max-w-[312px] sm:max-w-[1644px] mx-auto'}>
           <Image
             src={require('@/common/assets/images/frame-1.png')}
             alt=""
@@ -147,7 +149,10 @@ const Home: React.FunctionComponent = () => {
               />
             </div>
           </div>
-          <div onClick={handleSubmit} className={'relative form-submit flex flex-col justify-center items-center mt-4 cursor-pointer'}>
+          <div
+            onClick={!isSubmitting ? handleSubmit : undefined}
+            className={`relative form-submit w-fit flex flex-col justify-center items-center mt-4 cursor-pointer ${isSubmitting ? 'opacity-50 cursor-not-allowed' : ''}`}
+          >
             <Image src={require('@/common/assets/images/fire.png')} alt={' '} className={'z-20'} />
             <div
               className={

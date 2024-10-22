@@ -20,7 +20,7 @@ export default function Document() {
         <meta name="description" content="Pumphub - One-stop hub for token creation on Aptos" />
         <meta name="og:description" content="Pumphub - One-stop hub for token creation on Aptos"/>
         <meta property="og:title" content="Pumphub - One-stop hub for token creation on Aptos"/>
-        <meta property="og:image" content="https://movegpt.io/pumphub-thumbnail.png" />
+        <meta property="og:image" content="https://pumphub.io/pumphub-thumbnail.png" />
         <meta name="og:image:alt" content="Pumphub - One-stop hub for token creation on Aptos" />
         <meta name="og:url" content="https://pumphub.io/" />
         

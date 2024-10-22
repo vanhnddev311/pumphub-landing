@@ -5,26 +5,32 @@ import Link from 'next/link';
 import React from 'react';
 import ModalSubmitSuccess from '@/common/components/Modal/ModalSubmitSuccess';
 import { useModal } from '@/common/hooks/useModal';
+import ModalSubmitFailed from '@/common/components/Modal/ModalSubmitFailed';
 
 const Home: React.FunctionComponent = () => {
   const [username, setUsername] = React.useState('');
   const [email, setEmail] = React.useState('');
   const {show, setShow, toggle} = useModal()
+  const {show: showFailed, setShow: setShowFailed, toggle: toggleFailed} = useModal()
 
   const handleSubmit = () => {
     const formData = new FormData();
     formData.append('userName', username);
     formData.append('email', email);
-    console.log('formData', username, email, formData);
-    const res = fetch('https://sheetdb.io/api/v1/au1lo0u9fhi65', {
-      method: 'POST',
-      // headers: {
-      //   'Content-Type': 'application/json',
-      // },
-      body: formData,
-    });
-    
-    setShow(true)
+    fetch('https://sheetdb.io/api/v1/au1lo0u9fhi65', {
+        method: 'POST',
+        body: formData,
+    })
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error('Network response was not ok');
+    }
+        setShow(true);
+      })
+      .catch((e: any) => {
+        console.error('Fetch error:', e);
+        setShowFailed(true);
+      });
   };
 
   return (
@@ -130,6 +136,7 @@ const Home: React.FunctionComponent = () => {
         </div>
       </div>
       <ModalSubmitSuccess isOpen={!!show} handleClose={toggle} />
+      <ModalSubmitFailed isOpen={!!showFailed} handleClose={toggleFailed} />
     </div>
   );
 };

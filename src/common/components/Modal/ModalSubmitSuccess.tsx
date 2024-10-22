@@ -1,9 +1,8 @@
-import { Button, Modal, notification } from 'antd';
+import { Modal } from 'antd';
 import Image from 'next/image';
 import React from 'react';
 import Link from 'next/link';
 import { discordUrl, telegramUrl, twitterUrl } from '@/common/utils';
-import { DiscordIcon, TelegramIcon, TwitterIcon } from '@/common/components/icons/common';
 
 interface Props {
   isOpen: boolean;

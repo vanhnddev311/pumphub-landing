@@ -10,10 +10,22 @@ import ModalSubmitFailed from '@/common/components/Modal/ModalSubmitFailed';
 const Home: React.FunctionComponent = () => {
   const [username, setUsername] = React.useState('');
   const [email, setEmail] = React.useState('');
+  const [validEmail, setValidEmail] = React.useState(true);
   const {show, setShow, toggle} = useModal()
   const {show: showFailed, setShow: setShowFailed, toggle: toggleFailed} = useModal()
 
   const handleSubmit = () => {
+    if (username?.length == 0 || email?.length == 0) {
+      setShowFailed(true);
+      return;
+    }
+    const emailPattern = /\S+@\S+\.\S+/;
+    if (!emailPattern.test(email)) {
+      setValidEmail(false);
+      return;
+    } else {
+      setValidEmail(true);
+    }
     const formData = new FormData();
     formData.append('userName', username);
     formData.append('email', email);
@@ -45,10 +57,14 @@ const Home: React.FunctionComponent = () => {
         alt={' '}
         className={'block sm:hidden absolute bottom-0 left-0 w-full z-20'}
       />
-      <div className={'relative border-[15px] border-[#EC9E34] min-h-screen pb-24 z-10'}>
+      <div className={'relative border-[15px] border-[#EC9E34] min-h-screen pb-32 z-10'}>
         <div className={`header z-20 w-full flex items-center bg-[#000] p-[60px]`}>
           <div className="mx-auto container max-w-[1600px] sm:px-0 h-full w-full top-0 left-0 flex justify-between items-center relative">
-            <div className={'left-0 top-0 flex justify-center sm:justify-start items-center relative w-full sm:max-w-[250px]'}>
+            <div
+              className={
+                'left-0 top-0 flex justify-center sm:justify-start items-center relative w-full sm:max-w-[250px]'
+              }
+            >
               <Link
                 className={'flex gap-2 items-center relative'}
                 href={'/'}
@@ -80,22 +96,22 @@ const Home: React.FunctionComponent = () => {
             src={require('@/common/assets/images/frame-1.png')}
             alt=""
             className={'hidden sm:block w-[80px] absolute top-[44px] lg:top-[88px] left-[76px]'}
-            />
+          />
           <Image
             src={require('@/common/assets/images/frame-1.png')}
             alt=""
             className={'hidden sm:block w-[88px] absolute top-0 right-[120px] lg:right-[180px]'}
-            />
+          />
           <Image
             src={require('@/common/assets/images/frame-1.png')}
             alt=""
             className={'hidden sm:block w-[100px] absolute bottom-0 left-0'}
-            />
+          />
           <Image
             src={require('@/common/assets/images/frame-1.png')}
             alt=""
             className={'hidden sm:block w-[120px] absolute top-1/2 -translate-x-1/2 right-0'}
-            />
+          />
           <div className={'container text-title flex flex-col mx-auto max-w-[1080px] gap-6 sm:gap-8'}>
             <div>hey degen!</div>
             <div>we’re coming so close to the moon 🚀</div>
@@ -107,32 +123,40 @@ const Home: React.FunctionComponent = () => {
               https://pumphub.io/discord
             </Link>
           </div>
-          <div className={'form-input flex flex-col sm:flex-row justify-center mx-auto max-w-[1080px] items-center gap-4 sm:gap-[100px] mt-6 sm:mt-12'}>
-            <input
-              className={'flex items-center bg-input min-w-[232px] h-[40px] text-[#000] p-3'}
-              placeholder={'Discord username'}
-              value={username}
-              onChange={(e) => setUsername(e?.target.value)}
-            />
-            <input
-              className={'flex items-center bg-input min-w-[232px] h-[40px] text-[#000] p-3'}
-              placeholder={'Email'}
-              value={email}
-              onChange={(e) => setEmail(e?.target.value)}
-            />
+          <div
+            className={
+              'flex flex-col sm:flex-row justify-center mx-auto max-w-[1080px] items-center gap-4 sm:gap-[100px] mt-4 sm:mt-10'
+            }
+          >
+            <div>
+              <div className={'h-[21px]'}></div>
+              <input
+                className={'form-input flex items-center bg-input min-w-[232px] h-[40px] text-[#000] p-3 mt-2'}
+                placeholder={'Discord username'}
+                value={username}
+                onChange={(e) => setUsername(e?.target.value)}
+              />
+            </div>
+            <div>
+              <div className={`h-[21px] ${validEmail ? 'opacity-0' : ''} text-[#E24444]`}>Not validate email</div>
+              <input
+                className={'form-input flex items-center bg-input min-w-[232px] h-[40px] text-[#000] p-3 mt-2'}
+                placeholder={'Email'}
+                value={email}
+                onChange={(e) => setEmail(e?.target.value)}
+              />
+            </div>
           </div>
-          <div className={'relative form-submit flex flex-col justify-center items-center mt-4'}>
+          <div onClick={handleSubmit} className={'relative form-submit flex flex-col justify-center items-center mt-4 cursor-pointer'}>
             <Image src={require('@/common/assets/images/fire.png')} alt={' '} className={'z-20'} />
             <div
-              onClick={handleSubmit}
               className={
-                'flex justify-center items-center bg-submit mb-2 min-w-[168px] h-[40px] text-[#fff] font-bold text-[24px] cursor-pointer'
+                'flex justify-center items-center bg-submit mb-2 min-w-[168px] h-[40px] text-[#fff] font-bold text-[24px]'
               }
             >
               Submit
             </div>
           </div>
-          
         </div>
       </div>
       <ModalSubmitSuccess isOpen={!!show} handleClose={toggle} />

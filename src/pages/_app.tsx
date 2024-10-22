@@ -11,7 +11,7 @@ import { gtag, install } from 'ga-gtag';
 import { useRouter } from 'next/router';
 
 export const installConfig = () => {
-  install('G-R2KM4H6P0F');
+  install('G-WF8N9Y8FJY');
 };
 
 export default function App({ Component, pageProps }: AppProps) {
